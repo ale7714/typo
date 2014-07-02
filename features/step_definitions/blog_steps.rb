@@ -53,4 +53,13 @@ And /^I am logged in as "(.*?)" with password "(.*?)"$/ do |user,password|
   end
 end
 
+And /^I merged article with id "(.*?)" with articled with id "(.*?)"$/ do |id,id_merge|
+  article = Article.find_by_id(id)
+  article.merge_with(id_merge)
+end
+
+
+And /^user "(.*?)" should have "(\d+)" articles$/ do |user,quantity|
+  assert Article.find_all_by_author(user).size == Integer(quantity)
+end
 

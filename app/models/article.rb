@@ -422,11 +422,11 @@ class Article < Content
     if not self.id or not second_article.id
       return false
     end
-
     self.body = self.body + "\n\n" + second_article.body
     self.comments << second_article.comments
     self.save!
 
+    second_article = Article.find_by_id(second_article_id)
     second_article.destroy
 
   end
